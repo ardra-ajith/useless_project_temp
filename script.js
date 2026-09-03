@@ -1,10 +1,13 @@
+// ================= BASIC ELEMENTS =================
+
 const chatBox = document.getElementById("chatBox");
 const userInput = document.getElementById("userInput");
 const sendBtn = document.getElementById("sendBtn");
 const typing = document.getElementById("typing");
 
 
-// Kozhiyude different messages
+// ================= KOZHI CHAT MESSAGES =================
+
 const messages = [
     "Chaaya kudicho? ☕",
     "Orangiyo? 👀",
@@ -18,7 +21,8 @@ const messages = [
 ];
 
 
-// Kozhi message add cheyyan
+// ================= ADD KOZHI MESSAGE TO CHAT =================
+
 function addKozhiMessage(text) {
 
     const message = document.createElement("div");
@@ -29,12 +33,13 @@ function addKozhiMessage(text) {
 
     chatBox.appendChild(message);
 
-    // Latest message automatically kaanikkan
+    // Scroll to latest message
     chatBox.scrollTop = chatBox.scrollHeight;
 }
 
 
-// Random Kozhi message
+// ================= RANDOM CHAT MESSAGE =================
+
 function sendRandomMessage() {
 
     const randomIndex =
@@ -44,13 +49,18 @@ function sendRandomMessage() {
 }
 
 
-// Starting message
+// ================= FIRST CHAT MESSAGE =================
+
+// After 3 seconds
 setTimeout(function () {
+
     sendRandomMessage();
+
 }, 3000);
 
 
-// User type cheyyumbol typing indicator
+// ================= TYPING INDICATOR =================
+
 userInput.addEventListener("input", function () {
 
     if (userInput.value.length > 0) {
@@ -66,34 +76,36 @@ userInput.addEventListener("input", function () {
 });
 
 
-// Send button click count
-let clickCount = 0;
+// ================= SEND BUTTON =================
 
+let clickCount = 0;
 
 sendBtn.addEventListener("click", function () {
 
     clickCount++;
-// User message actually send aavilla
+
+    // User message actually send aavilla
     userInput.value = "";
+
+
+    // ================= THIRD CLICK =================
 
     if (clickCount === 3) {
 
-    const notification =
-        document.getElementById("notification");
+        showNotification(
+            "OOPS!! ONNUM PARANJITT KARYAMILLA 😭😂"
+        );
 
-    notification.classList.add("show");
+        clickCount = 0;
 
-    setTimeout(function () {
-        notification.classList.remove("show");
-    }, 4000);
+        typing.textContent = "";
 
-    clickCount = 0;
+        return;
+    }
 
-    typing.textContent = "";
 
-    return;
-}
-    // First and second click
+    // ================= FIRST & SECOND CLICK =================
+
     typing.textContent = "Kozhi is typing...";
 
 
@@ -108,29 +120,59 @@ sendBtn.addEventListener("click", function () {
 });
 
 
-// Every 10 seconds Kozhi oru message parayum
+// ================= CHAT MESSAGE EVERY 10 SECONDS =================
+
+// NOTE:
+// Ith chat-il mathram message add cheyyum.
+// Notification alla.
+// Voice illa.
+// Chicken popup illa.
+
 setInterval(function () {
 
     sendRandomMessage();
 
 }, 10000);
-// ================= NOTIFICATION =================
+
+
+// =====================================================
+// ================= NOTIFICATION SYSTEM ===============
+// =====================================================
+
 
 const notificationMessages = [
+
     "Chaaya kudicho? ☕",
+
     "Mwolusee... orangiyo? 👀",
+
     "Njan ivide undatto 🐔",
+
     "Enthaa reply tharathath? 😭",
+
     "Food kazhicho? 🍚",
+
     "Busy aanalle... njan kandupidicholam 👀",
+
     "Hello hello... enne maranno? 🐔",
+
     "Oru reply thannude? 🥺"
+
 ];
+
+
+// ================= SHOW NOTIFICATION =================
 
 function showNotification(text) {
 
-    const popup = document.getElementById("notification");
-    const message = document.getElementById("notificationMessage");
+    const popup =
+        document.getElementById("notification");
+
+    const message =
+        document.getElementById("notificationMessage");
+
+
+    // ================= IN-PAGE POPUP =================
 
     if (popup && message) {
 
@@ -138,60 +180,124 @@ function showNotification(text) {
 
         popup.classList.add("show");
 
+
         setTimeout(function () {
+
             popup.classList.remove("show");
+
         }, 5000);
+
     }
 
-    // Browser notification
+
+    // ================= BROWSER NOTIFICATION =================
+
     if (
         "Notification" in window &&
         Notification.permission === "granted"
     ) {
+
         new Notification("🐔 Reminder Kozhi", {
+
             body: text
+
         });
+
     }
 
-    // Voice
+
+    // ================= VOICE =================
+
     if ("speechSynthesis" in window) {
 
-        const speech = new SpeechSynthesisUtterance(text);
+        // Emojis remove cheyyunnu
+        const voiceText =
+            text.replace(
+                /[☕👀😌😭🥺🍚🐔😂]/g,
+                ""
+            );
 
+
+        const speech =
+            new SpeechSynthesisUtterance(voiceText);
+
+
+        // Malayalam voice
         speech.lang = "ml-IN";
-        speech.rate = 0.9;
-        speech.pitch = 1.1;
 
+
+        // Slightly slow + playful
+        speech.rate = 0.85;
+
+        speech.pitch = 0.8;
+
+        speech.volume = 1;
+
+
+        // Previous voice stop cheyyum
         speechSynthesis.cancel();
+
+
+        // Speak
         speechSynthesis.speak(speech);
+
     }
+
 }
 
 
-// Ask permission
+// =====================================================
+// ================= NOTIFICATION PERMISSION ============
+// =====================================================
+
 if ("Notification" in window) {
+
     Notification.requestPermission();
+
 }
 
 
-// Random notification after 15–30 seconds
+// =====================================================
+// ================= RANDOM NOTIFICATION =================
+// =====================================================
+
+// Notification 1–9 minutes idayil random aayi varum.
+
 function scheduleNotification() {
 
+
+    const randomMinutes =
+        Math.floor(Math.random() * 9) + 1;
+
+
     const randomTime =
-        Math.floor(Math.random() * 15000) + 15000;
+        randomMinutes * 60 * 1000;
+
 
     setTimeout(function () {
 
+
         const randomIndex =
-            Math.floor(Math.random() * notificationMessages.length);
+            Math.floor(
+                Math.random() *
+                notificationMessages.length
+            );
 
-        showNotification(notificationMessages[randomIndex]);
 
+        showNotification(
+            notificationMessages[randomIndex]
+        );
+
+
+        // Next notification schedule cheyyuka
         scheduleNotification();
 
+
     }, randomTime);
+
 }
 
 
-// Start
+// ================= START NOTIFICATIONS =================
+
 scheduleNotification();
