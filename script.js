@@ -21,6 +21,16 @@ const messages = [
 ];
 
 
+// ================= GET REMINDER FROM BACKEND =================
+
+async function getBackendReminder() {
+
+    const response = await fetch("http://localhost:3000/api/reminder");
+
+    const data = await response.json();
+
+    return data.message;
+}
 // ================= ADD KOZHI MESSAGE TO CHAT =================
 
 function addKozhiMessage(text) {
@@ -40,12 +50,11 @@ function addKozhiMessage(text) {
 
 // ================= RANDOM CHAT MESSAGE =================
 
-function sendRandomMessage() {
+async function sendRandomMessage() {
 
-    const randomIndex =
-        Math.floor(Math.random() * messages.length);
+    const message = await getBackendReminder();
 
-    addKozhiMessage(messages[randomIndex]);
+    addKozhiMessage(message);
 }
 
 
