@@ -21,16 +21,6 @@ const messages = [
 ];
 
 
-// ================= GET REMINDER FROM BACKEND =================
-
-async function getBackendReminder() {
-
-    const response = await fetch("http://localhost:3000/api/reminder");
-
-    const data = await response.json();
-
-    return data.message;
-}
 // ================= ADD KOZHI MESSAGE TO CHAT =================
 
 function addKozhiMessage(text) {
@@ -50,11 +40,12 @@ function addKozhiMessage(text) {
 
 // ================= RANDOM CHAT MESSAGE =================
 
-async function sendRandomMessage() {
+function sendRandomMessage() {
 
-    const message = await getBackendReminder();
+    const randomIndex =
+        Math.floor(Math.random() * messages.length);
 
-    addKozhiMessage(message);
+    addKozhiMessage(messages[randomIndex]);
 }
 
 
@@ -108,6 +99,7 @@ sendBtn.addEventListener("click", function () {
         clickCount = 0;
 
         typing.textContent = "";
+
         return;
     }
 
@@ -248,9 +240,6 @@ function showNotification(text) {
 
         // Speak
         speechSynthesis.speak(speech);
-        speech.onend = function () {
-    speechSynthesis.cancel();
-};
 
     }
 
@@ -273,30 +262,29 @@ if ("Notification" in window) {
 // =====================================================
 
 // Random notification after 1–9 minutes
-let lastReminder = "";
+
 function scheduleNotification() {
 
     const randomMinutes =
-        Math.floor(Math.random() * 3) + 1;
+        Math.floor(Math.random() * 9) + 1;
 
     const randomTime =
         randomMinutes * 60 * 1000;
 
-    setTimeout(async function () {
+    setTimeout(function () {
 
-    const message = await getBackendReminder();
-    if (message === lastReminder) {
-    scheduleNotification();
-    return;
-}
+        const randomIndex =
+            Math.floor(
+                Math.random() * notificationMessages.length
+            );
 
-lastReminder = message;
+        showNotification(
+            notificationMessages[randomIndex]
+        );
 
-    showNotification(message);
+        scheduleNotification();
 
-    scheduleNotification();
-
-}, randomTime);
+    }, randomTime);
 }
 
 
