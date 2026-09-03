@@ -1,4 +1,4 @@
-// ================= BASIC ELEMENTS =================
+//================= BASIC ELEMENTS =================
 
 const chatBox = document.getElementById("chatBox");
 const userInput = document.getElementById("userInput");
