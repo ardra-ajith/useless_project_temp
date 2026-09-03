@@ -160,11 +160,11 @@ h1 {
     50% {
         transform: translateY(-10px);
     }
-}/* Notification popup */
+}
+/* ================= NOTIFICATION POPUP ================= */
 
 .notification {
     position: fixed;
-
     top: 25px;
     right: 25px;
 
@@ -183,7 +183,6 @@ h1 {
 
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 
-    /* Initially hidden */
     transform: translateX(120%);
     transition: transform 0.4s ease;
 

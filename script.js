@@ -114,3 +114,84 @@ setInterval(function () {
     sendRandomMessage();
 
 }, 10000);
+// ================= NOTIFICATION =================
+
+const notificationMessages = [
+    "Chaaya kudicho? ☕",
+    "Mwolusee... orangiyo? 👀",
+    "Njan ivide undatto 🐔",
+    "Enthaa reply tharathath? 😭",
+    "Food kazhicho? 🍚",
+    "Busy aanalle... njan kandupidicholam 👀",
+    "Hello hello... enne maranno? 🐔",
+    "Oru reply thannude? 🥺"
+];
+
+function showNotification(text) {
+
+    const popup = document.getElementById("notification");
+    const message = document.getElementById("notificationMessage");
+
+    if (popup && message) {
+
+        message.textContent = text;
+
+        popup.classList.add("show");
+
+        setTimeout(function () {
+            popup.classList.remove("show");
+        }, 5000);
+    }
+
+    // Browser notification
+    if (
+        "Notification" in window &&
+        Notification.permission === "granted"
+    ) {
+        new Notification("🐔 Reminder Kozhi", {
+            body: text
+        });
+    }
+
+    // Voice
+    if ("speechSynthesis" in window) {
+
+        const speech = new SpeechSynthesisUtterance(text);
+
+        speech.lang = "ml-IN";
+        speech.rate = 0.9;
+        speech.pitch = 1.1;
+
+        speechSynthesis.cancel();
+        speechSynthesis.speak(speech);
+    }
+}
+
+
+// Ask permission
+if ("Notification" in window) {
+    Notification.requestPermission();
+}
+
+
+// Random notification after 15–30 seconds
+function scheduleNotification() {
+
+    const randomTime =
+        Math.floor(Math.random() * 15000) + 15000;
+
+    setTimeout(function () {
+
+        const randomIndex =
+            Math.floor(Math.random() * notificationMessages.length);
+
+        showNotification(notificationMessages[randomIndex]);
+
+        scheduleNotification();
+
+    }, randomTime);
+}
+
+
+// Start
+scheduleNotification();
