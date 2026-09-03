@@ -1,19 +1,62 @@
 body {
+    margin: 0;
     font-family: Arial, sans-serif;
+    background: #fff4d6;
+}
+
+.container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.kozhibox {
+    width: 90%;
+    max-width: 500px;
+    background: white;
+    padding: 40px;
     text-align: center;
-    padding-top: 100px;
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.kozhi {
+    font-size: 90px;
 }
 
 h1 {
-    font-size: 50px;
+    font-size: 42px;
+    margin: 10px 0;
 }
 
-p {
-    font-size: 20px;
+.subtitle {
+    font-size: 18px;
+    color: #666;
+}
+
+.message-box {
+    margin: 30px 0;
+    padding: 20px;
+    background: #fff8e8;
+    border-radius: 15px;
+}
+
+.message-box p {
+    font-size: 22px;
+    margin: 0;
 }
 
 button {
-    padding: 12px 25px;
-    font-size: 18px;
+    border: none;
+    padding: 14px 30px;
+    font-size: 17px;
+    border-radius: 12px;
     cursor: pointer;
+}
+
+.status {
+    font-size: 13px;
+    color: #888;
+    margin-top: 20px;
 }
