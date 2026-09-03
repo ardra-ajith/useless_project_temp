@@ -4,6 +4,7 @@ body {
     background: #fff4d6;
 }
 
+/* Main page */
 .container {
     min-height: 100vh;
     display: flex;
@@ -11,72 +12,145 @@ body {
     align-items: center;
 }
 
+/* Main app box */
 .kozhibox {
     width: 90%;
     max-width: 500px;
     background: white;
-    padding: 40px;
+    padding: 35px;
     text-align: center;
     border-radius: 25px;
+    border: 2px solid #222;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
+/* Chicken */
 .kozhi {
-    font-size: 90px;
-}
-
-h1 {
-    font-size: 42px;
-    margin: 10px 0;
-}
-
-.subtitle {
-    font-size: 18px;
-    color: #666;
-}
-
-.message-box {
-    margin: 30px 0;
-    padding: 20px;
-    background: #fff8e8;
-    border-radius: 15px;
-}
-
-.message-box p {
-    font-size: 22px;
-    margin: 0;
-}
-
-button {
-    border: none;
-    padding: 14px 30px;
-    font-size: 17px;
-    border-radius: 12px;
-    cursor: pointer;
-}
-
-.status {
-    font-size: 13px;
-    color: #888;
-    margin-top: 20px;
-}
-button {
-    background: #222;
-    color: white;
-    transition: 0.2s;
-}
-
-button:hover {
-    transform: scale(1.05);
-}
-
-.message-box {
-    border: 2px dashed #222;
-}
-
-.kozhi {
+    font-size: 80px;
     animation: bounce 2s infinite;
 }
+
+/* Title */
+h1 {
+    font-size: 40px;
+    margin: 10px 0;
+    font-weight: 800;
+}
+
+/* Subtitle */
+.subtitle {
+    font-size: 17px;
+    color: #666;
+    line-height: 1.5;
+}
+
+
+/* ================= CHAT ================= */
+
+.chat-box {
+    margin-top: 30px;
+    height: 300px;
+    padding: 20px;
+
+    background: #fff8e8;
+    border: 2px dashed #222;
+    border-radius: 18px;
+
+    overflow-y: auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Kozhi message */
+.message {
+    max-width: 75%;
+    padding: 12px 16px;
+    border-radius: 18px;
+    font-size: 17px;
+    text-align: left;
+}
+
+.kozhi-message {
+    align-self: flex-start;
+    background: #222;
+    color: white;
+}
+
+
+/* Typing indicator */
+
+.typing {
+    margin-top: 10px;
+    font-size: 13px;
+    color: #888;
+    text-align: left;
+}
+
+
+/* User typing box */
+/* Input area */
+
+.input-area {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+#userInput {
+    flex: 1;
+    box-sizing: border-box;
+
+    padding: 14px 16px;
+
+    border: 2px solid #222;
+    border-radius: 15px;
+
+    font-size: 16px;
+    outline: none;
+}
+
+#userInput:focus {
+    border-color: #555;
+}
+
+#userInput::placeholder {
+    color: #999;
+}
+
+
+/* Send icon */
+
+#sendBtn {
+    width: 48px;
+    height: 48px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #222;
+    color: white;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: transform 0.15s ease;
+}
+
+#sendBtn:hover {
+    transform: scale(1.08);
+}
+
+
+
+/* Chicken animation */
 
 @keyframes bounce {
     0%, 100% {
@@ -86,28 +160,4 @@ button:hover {
     50% {
         transform: translateY(-10px);
     }
-}
-/* Small UI improvements */
-
-.kozhibox {
-    border: 2px solid #222;
-}
-
-h1 {
-    font-weight: 800;
-}
-
-.message-box {
-    border: 2px dashed #222;
-}
-
-button {
-    background: #222;
-    color: white;
-    font-weight: bold;
-    transition: transform 0.15s ease;
-}
-
-button:hover {
-    transform: scale(1.05);
 }
