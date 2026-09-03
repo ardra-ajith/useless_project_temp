@@ -1,4 +1,8 @@
 const express = require("express");
+const cors = require("cors");
+const app = express();
+app.use(cors());
+
 const reminders = [
     "Chaaya kudicho? ☕🐔",
     "Evide poyi mwolluse? 👀",
@@ -6,8 +10,6 @@ const reminders = [
     "Enne marannooo? 😭",
     "Oru reminder vannatha 😌🐔"
 ];
-
-const app = express();
 
 const PORT = 3000;
 
