@@ -261,43 +261,33 @@ if ("Notification" in window) {
 // ================= RANDOM NOTIFICATION =================
 // =====================================================
 
-// Notification 1–9 minutes idayil random aayi varum.
+// Random notification after 1–9 minutes
 
 function scheduleNotification() {
-
 
     const randomMinutes =
         Math.floor(Math.random() * 9) + 1;
 
-
     const randomTime =
         randomMinutes * 60 * 1000;
 
-
     setTimeout(function () {
-
 
         const randomIndex =
             Math.floor(
-                Math.random() *
-                notificationMessages.length
+                Math.random() * notificationMessages.length
             );
-
 
         showNotification(
             notificationMessages[randomIndex]
         );
 
-
-        // Next notification schedule cheyyuka
         scheduleNotification();
 
-
     }, randomTime);
-
 }
 
 
-// ================= START NOTIFICATIONS =================
+// Start notification system
 
 scheduleNotification();
