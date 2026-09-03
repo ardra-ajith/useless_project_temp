@@ -1,4 +1,11 @@
 const express = require("express");
+const reminders = [
+    "Chaaya kudicho? ☕🐔",
+    "Evide poyi mwolluse? 👀",
+    "Urangiyo? 🐔",
+    "Enne marannooo? 😭",
+    "Oru reminder vannatha 😌🐔"
+];
 
 const app = express();
 
