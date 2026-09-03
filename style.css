@@ -60,3 +60,54 @@ button {
     color: #888;
     margin-top: 20px;
 }
+button {
+    background: #222;
+    color: white;
+    transition: 0.2s;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+.message-box {
+    border: 2px dashed #222;
+}
+
+.kozhi {
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+/* Small UI improvements */
+
+.kozhibox {
+    border: 2px solid #222;
+}
+
+h1 {
+    font-weight: 800;
+}
+
+.message-box {
+    border: 2px dashed #222;
+}
+
+button {
+    background: #222;
+    color: white;
+    font-weight: bold;
+    transition: transform 0.15s ease;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
