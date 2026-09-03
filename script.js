@@ -108,7 +108,6 @@ sendBtn.addEventListener("click", function () {
         clickCount = 0;
 
         typing.textContent = "";
-
         return;
     }
 
@@ -249,6 +248,9 @@ function showNotification(text) {
 
         // Speak
         speechSynthesis.speak(speech);
+        speech.onend = function () {
+    speechSynthesis.cancel();
+};
 
     }
 
@@ -271,29 +273,30 @@ if ("Notification" in window) {
 // =====================================================
 
 // Random notification after 1–9 minutes
-
+let lastReminder = "";
 function scheduleNotification() {
 
     const randomMinutes =
-        Math.floor(Math.random() * 9) + 1;
+        Math.floor(Math.random() * 3) + 1;
 
     const randomTime =
         randomMinutes * 60 * 1000;
 
-    setTimeout(function () {
+    setTimeout(async function () {
 
-        const randomIndex =
-            Math.floor(
-                Math.random() * notificationMessages.length
-            );
+    const message = await getBackendReminder();
+    if (message === lastReminder) {
+    scheduleNotification();
+    return;
+}
 
-        showNotification(
-            notificationMessages[randomIndex]
-        );
+lastReminder = message;
 
-        scheduleNotification();
+    showNotification(message);
 
-    }, randomTime);
+    scheduleNotification();
+
+}, randomTime);
 }
 
 
