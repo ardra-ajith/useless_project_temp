@@ -73,26 +73,26 @@ let clickCount = 0;
 sendBtn.addEventListener("click", function () {
 
     clickCount++;
-
-    // Message send cheyyilla
+// User message actually send aavilla
     userInput.value = "";
 
-
-    // 3 clicks kazhinjal prank message
     if (clickCount === 3) {
 
-        addKozhiMessage(
-            "OOPS! ONNUM PARANJITT KARYAMILLA 😭😂"
-        );
+    const notification =
+        document.getElementById("notification");
 
-        clickCount = 0;
+    notification.classList.add("show");
 
-        typing.textContent = "";
+    setTimeout(function () {
+        notification.classList.remove("show");
+    }, 4000);
 
-        return;
-    }
+    clickCount = 0;
 
+    typing.textContent = "";
 
+    return;
+}
     // First and second click
     typing.textContent = "Kozhi is typing...";
 

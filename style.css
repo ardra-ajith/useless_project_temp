@@ -160,4 +160,53 @@ h1 {
     50% {
         transform: translateY(-10px);
     }
+}/* Notification popup */
+
+.notification {
+    position: fixed;
+
+    top: 25px;
+    right: 25px;
+
+    width: 320px;
+
+    background: white;
+
+    border: 2px solid #222;
+    border-radius: 18px;
+
+    padding: 15px;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+
+    /* Initially hidden */
+    transform: translateX(120%);
+    transition: transform 0.4s ease;
+
+    z-index: 1000;
+}
+
+.notification.show {
+    transform: translateX(0);
+}
+
+.notification-chicken {
+    font-size: 45px;
+}
+
+.notification-text {
+    text-align: left;
+}
+
+.notification-text strong {
+    font-size: 16px;
+}
+
+.notification-text p {
+    margin: 5px 0 0;
+    font-size: 14px;
 }
