@@ -266,7 +266,7 @@ if ("Notification" in window) {
 function scheduleNotification() {
 
     const randomMinutes =
-        Math.floor(Math.random() * 9) + 1;
+        Math.floor(Math.random() * 3) + 1;
 
     const randomTime =
         randomMinutes * 60 * 1000;
